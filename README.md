@@ -4,6 +4,7 @@ This repository contains a small macOS setup for a personal machine. It includes
 
 - `brew-setup.sh` — a script that installs Homebrew (if missing), updates it, and installs a curated list of formulae and casks.
 - `.zshrc` — a safe, minimal Zsh configuration that wires Homebrew into your shell, initializes `asdf`, sets `JAVA_HOME` (when available), and defines useful aliases and shell settings.
+- `git-config.sh` — a small script to set your global Git user name/email and a few useful Git aliases.
 
 Use this README to understand what each file does, how to run the setup, and how to verify or customize it.
 
@@ -27,6 +28,22 @@ Use this README to understand what each file does, how to run the setup, and how
 	- Sets `JAVA_HOME` automatically to an `asdf`-managed Java when available and prepends it to `PATH`.
 	- Ensures common system paths are in `PATH` and defines a few handy aliases (`ll`, `gs`, `brewup`, `cls`).
 	- Contains safe shell options: `noclobber`, `ignoreeof`, and increased history sizes.
+
+## Git configuration
+
+- `git-config.sh`
+	- Sets global Git configuration values for `user.name` and `user.email` and adds common aliases (`co`, `br`, `ci`, `st`).
+	- Edit `git-config.sh` to replace the example name and email before running.
+	- Note: `git-config.sh` currently uses `//` comments which are not valid in sh/zsh scripts; replace `//` with `#` or run the `git config` commands manually.
+
+Run the script (after editing) with:
+
+```zsh
+chmod +x git-config.sh
+./git-config.sh
+```
+
+Or run the commands interactively in your terminal to set your name/email and aliases.
 
 ## Usage — run the installer
 
