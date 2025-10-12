@@ -56,6 +56,11 @@ set -o ignoreeof   # require Ctrl+D twice to exit
 HISTSIZE=5000
 SAVEHIST=5000
 
+
+# ==== 8. Start and config ssh-agent for git ====
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/{your_private_key}  # replace with your key name
+
 #############################################
 # END OF FILE
 #############################################
