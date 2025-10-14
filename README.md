@@ -59,6 +59,38 @@ Notes:
 - The script will add `eval "$(/opt/homebrew/bin/brew shellenv)"` to `~/.zprofile` when installing Homebrew. If you use a different shell startup file, adapt accordingly.
 - If Homebrew is already installed, the script will skip installation and continue with `brew update` and package installs.
 
+## Quick setup steps
+
+Follow these three quick steps to get the machine configured:
+
+1. Run the Homebrew setup script to install Homebrew and packages:
+
+```zsh
+chmod +x brew-setup.sh
+./brew-setup.sh
+```
+
+2. Copy the provided `.zshrc` into your home directory (overwrites existing `~/.zshrc` — back it up first if needed):
+
+```zsh
+cp .zshrc ~/.zshrc
+source ~/.zshrc
+```
+
+3. Configure Git (edit `git-config.sh` first to set your name/email):
+
+```zsh
+# edit git-config.sh to set your name and email
+chmod +x git-config.sh
+./git-config.sh
+```
+
+Notes:
+
+- Before step 2, if you already have a custom `~/.zshrc` you want to keep, run `cp ~/.zshrc ~/.zshrc.backup`.
+- The `git-config.sh` file may contain `//`-style comments—replace them with `#` if you plan to run it as a shell script.
+
+
 ## Verify the installation
 
 Run these commands to verify the environment and key tools:
