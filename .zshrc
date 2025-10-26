@@ -21,13 +21,21 @@ if [ -d "$(brew --prefix asdf 2>/dev/null)" ]; then
 fi
 
 
-# ===== 3. JAVA_HOME setup =====
-# Automatically set JAVA_HOME based on asdf's active Java version
+# ===== 3. JAVA_HOME & Python setup =====
+# Automatically set JAVA_HOME and make asdf-managed Python available
 if command -v asdf >/dev/null 2>&1; then
-  JAVA_PATH="$(asdf where java 2>/dev/null)"
+  # Set JAVA_HOME if asdf has a Java installed
+  JAVA_PATH="$(asdf where java 2>/dev/null || true)"
   if [ -n "$JAVA_PATH" ]; then
     export JAVA_HOME="$JAVA_PATH"
     export PATH="$JAVA_HOME/bin:$PATH"
+  fi
+
+  # Make asdf-managed Python available (if installed)
+  # The python plugin is usually named 'python' for asdf plugins.
+  PYTHON_PATH="$(asdf where python 2>/dev/null || true)"
+  if [ -n "$PYTHON_PATH" ]; then
+    export PATH="$PYTHON_PATH/bin:$PATH"
   fi
 fi
 
