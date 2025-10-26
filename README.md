@@ -107,6 +107,44 @@ which brew
 
 If `asdf` is present, you can list installed runtimes with `asdf list` and install new ones as needed (for example, `asdf plugin-add java` then `asdf install java <version>`).
 
+## asdf and .tool-versions
+
+This repository includes a `.tool-versions` file at the project root that lists the runtimes this setup commonly uses. The file contains placeholder versions which you should replace with specific versions you want to install. Example entries (present in this repo):
+
+```
+java <version>
+nodejs <version>
+go <version>
+python <version>
+```
+
+To apply the versions from `.tool-versions` using `asdf`:
+
+```zsh
+# ensure the relevant plugins are added first
+asdf plugin-add java    # if not already added
+asdf plugin-add nodejs  # if not already added
+asdf plugin-add golang  # or 'go' plugin name if your plugin uses that name
+asdf plugin-add python  # if not already added
+
+# then install/set the versions from the file
+asdf install
+asdf global $(cat .tool-versions | awk '{print $1" " $2}')
+```
+
+Verify Java and Python after installing:
+
+```zsh
+java -version
+python --version
+asdf current
+```
+
+Note: plugin names may differ (for example the Go plugin is sometimes named `golang`); check the plugin name with `asdf plugin-list all` and adjust the `.tool-versions` or plugin-add commands accordingly.
+
+For full documentation and plugin details, see the official asdf documentation: https://asdf-vm.com
+
+
 ## Customization
 
 - To add/remove installed items, edit `brew-setup.sh`. Keep the `brew update` and `brew cleanup` calls.
